@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SportCity - Городские спортивные соревнования</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo-container">
+                <a href="index.html" class="logo">
+                    <i class="fas fa-medal logo-icon"></i>
+                    SportCity
+                </a>
+            </div>
+            <ul class="nav-links">
+                <li><a href="index.html" class="active">Главная</a></li>
+                <li><a href="my-competitions.html">Мои соревнования</a></li>
+                <li><a href="map.html">Карта</a></li>
+                <li><a href="news.html">Новости</a></li>
+                <li><a href="contacts.html">Контакты</a></li>
+                <li><a href="profile.html"><i class="fas fa-user"></i> Профиль</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="page-content">
+        <section class="hero">
+            <div class="hero-content">
+                <h1>Добро пожаловать в SportCity</h1>
+                <p>Участвуйте в городских спортивных соревнованиях и достигайте новых высот!</p>
+            </div>
+        </section>
+
+        <section class="competitions-list">
+            <div class="section-header">
+                <h2>Предстоящие соревнования</h2>
+                <div class="weather-widget">
+                    <i class="fas fa-sun"></i>
+                    <div class="weather-temp">+23°C</div>
+                    <div class="weather-desc">Идеальная погода для спорта</div>
+                </div>
+            </div>
+            <div class="competitions-container">
+                <div class="competition-card">
+                    <h3><span class="event-emoji">🏃‍♂️</span> Городской марафон</h3>
+                    <div class="event-details">
+                        <p><i class="fas fa-calendar"></i> 15 мая 2025 г.</p>
+                        <p><i class="fas fa-map-marker-alt"></i> Центральный парк</p>
+                        <p><i class="fas fa-info-circle"></i> Ежегодный городской марафон на дистанцию 42.2 км</p>
+                        <p><i class="fas fa-users"></i> Участников: 245/500</p>
+                    </div>
+                    <button class="btn-select" data-event="marathon">
+                        Участвовать
+                        <i class="fas fa-chevron-right"></i>
+                    </button>
+                </div>
+
+                <div class="competition-card">
+                    <h3><span class="event-emoji">🏊‍♂️</span> Турнир по плаванию</h3>
+                    <div class="event-details">
+                        <p><i class="fas fa-calendar"></i> 1 июня 2025 г.</p>
+                        <p><i class="fas fa-map-marker-alt"></i> Спортивный комплекс "Волна"</p>
+                        <p><i class="fas fa-info-circle"></i> Соревнования по плаванию в различных категориях</p>
+                        <p><i class="fas fa-users"></i> Участников: 89/200</p>
+                    </div>
+                    <button class="btn-select" data-event="swimming">
+                        Участвовать
+                        <i class="fas fa-chevron-right"></i>
+                    </button>
+                </div>
+
+                <div class="competition-card">
+                    <h3><span class="event-emoji">🚴‍♂️</span> Велогонка</h3>
+                    <div class="event-details">
+                        <p><i class="fas fa-calendar"></i> 15 июня 2025 г.</p>
+                        <p><i class="fas fa-map-marker-alt"></i> Парк "Сосновый бор"</p>
+                        <p><i class="fas fa-info-circle"></i> Городская велогонка на 50 км</p>
+                        <p><i class="fas fa-users"></i> Участников: 156/300</p>
+                    </div>
+                    <button class="btn-select" data-event="cycling">
+                        Участвовать
+                        <i class="fas fa-chevron-right"></i>
+                    </button>
+                </div>
+
+                <div class="competition-card">
+                    <h3><span class="event-emoji">🏃‍♂️🏊‍♂️🚴‍♂️</span> Городской триатлон</h3>
+                    <div class="event-details">
+                        <p><i class="fas fa-calendar"></i> 30 июня 2025 г.</p>
+                        <p><i class="fas fa-map-marker-alt"></i> Городской пляж</p>
+                        <p><i class="fas fa-info-circle"></i> Плавание 1.5 км, велогонка 40 км, бег 10 км</p>
+                        <p><i class="fas fa-users"></i> Участников: 78/150</p>
+                    </div>
+                    <button class="btn-select" data-event="triathlon">
+                        Участвовать
+                        <i class="fas fa-chevron-right"></i>
+                    </button>
+                </div>
+
+                <div class="competition-card">
+                    <h3><span class="event-emoji">🏃‍♂️</span> Соревнования по бегу</h3>
+                    <div class="event-details">
+                        <p><i class="fas fa-calendar"></i> 7 июля 2025 г.</p>
+                        <p><i class="fas fa-map-marker-alt"></i> Стадион "Динамо"</p>
+                        <p><i class="fas fa-info-circle"></i> Дистанции: 5 км, 10 км, полумарафон</p>
+                        <p><i class="fas fa-users"></i> Участников: 167/400</p>
+                    </div>
+                    <button class="btn-select" data-event="running">
+                        Участвовать
+                        <i class="fas fa-chevron-right"></i>
+                    </button>
+                </div>
+
+                <div class="competition-card">
+                    <h3><span class="event-emoji">🏃‍♂️🌲</span> Кросс по пересеченной местности</h3>
+                    <div class="event-details">
+                        <p><i class="fas fa-calendar"></i> 21 июля 2025 г.</p>
+                        <p><i class="fas fa-map-marker-alt"></i> Лесопарк "Зеленый"</p>
+                        <p><i class="fas fa-info-circle"></i> Трейловый забег на 15 км</p>
+                        <p><i class="fas fa-users"></i> Участников: 92/200</p>
+                    </div>
+                    <button class="btn-select" data-event="trail">
+                        Участвовать
+                        <i class="fas fa-chevron-right"></i>
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <section class="registration-form card">
+            <h2>Регистрация на соревнование</h2>
+            <form id="registrationForm">
+                <div class="form-group">
+                    <label for="competitionSelect">Выберите соревнование:</label>
+                    <select id="competitionSelect" name="competitionSelect" class="form-control" required>
+                        <option value="">-- Выберите соревнование --</option>
+                        <option value="marathon">Городской марафон</option>
+                        <option value="swimming">Турнир по плаванию</option>
+                        <option value="cycling">Велогонка</option>
+                        <option value="triathlon">Городской триатлон</option>
+                        <option value="running">Соревнования по бегу</option>
+                        <option value="trail">Кросс по пересеченной местности</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="firstName">Имя:</label>
+                    <input type="text" id="firstName" name="firstName" class="form-control" required>
+                </div>
+                <div class="form-group">
+                    <label for="lastName">Фамилия:</label>
+                    <input type="text" id="lastName" name="lastName" class="form-control" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email:</label>
+                    <input type="email" id="email" name="email" class="form-control" required>
+                </div>
+                <div class="form-group">
+                    <label for="age">Возраст:</label>
+                    <input type="number" id="age" name="age" class="form-control" required min="18" max="100">
+                </div>
+                <div class="form-group">
+                    <label for="weight">Вес (кг):</label>
+                    <input type="number" id="weight" name="weight" class="form-control" required step="0.1">
+                </div>
+                <button type="submit" class="btn-select">
+                    Зарегистрироваться
+                    <i class="fas fa-chevron-right"></i>
+                </button>
+            </form>
+            <div class="registration-success">
+                Регистрация успешно завершена! Информация о соревновании добавлена в раздел "Мои соревнования".
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>Контакты</h3>
+                <p><i class="fas fa-phone"></i> +7 (999) 123-45-67</p>
+                <p><i class="fas fa-envelope"></i> info@sportcity.ru</p>
+            </div>
+            <div class="footer-section">
+                <h3>Социальные сети</h3>
+                <div class="social-icons">
+                    <a href="#"><i class="fab fa-vk"></i></a>
+                    <a href="#"><i class="fab fa-telegram"></i></a>
+                    <a href="#"><i class="fab fa-youtube"></i></a>
+                </div>
+            </div>
+            <div class="footer-section">
+                <h3>Экстренные контакты</h3>
+                <p><i class="fas fa-ambulance"></i> Скорая помощь: 103</p>
+                <p><i class="fas fa-first-aid"></i> Медпункт: +7 (999) 999-99-99</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 SportCity. Все права защищены.</p>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+</body>
+</html> 

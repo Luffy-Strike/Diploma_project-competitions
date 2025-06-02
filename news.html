@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Новости - SportCity</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo-container">
+                <a href="index.html" class="logo">
+                    <i class="fas fa-medal logo-icon"></i>
+                    SportCity
+                </a>
+            </div>
+            <ul class="nav-links">
+                <li><a href="index.html">Главная</a></li>
+                <li><a href="my-competitions.html">Мои соревнования</a></li>
+                <li><a href="map.html">Карта</a></li>
+                <li><a href="news.html" class="active">Новости</a></li>
+                <li><a href="contacts.html">Контакты</a></li>
+                <li><a href="profile.html"><i class="fas fa-user"></i> Профиль</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="page-content">
+        <section class="news-section">
+            <div class="news-header">
+                <h1>Новости спорта</h1>
+                <div class="news-filters">
+                    <div class="search-box">
+                        <input type="text" class="form-control" placeholder="Поиск новостей...">
+                        <i class="fas fa-search"></i>
+                    </div>
+                </div>
+            </div>
+
+            <div class="news-grid" id="newsList">
+                <article class="news-card">
+                    <div class="news-content">
+                        <h2 class="news-title">30 российских пловцов выступят на чемпионате мира в Сингапуре</h2>
+                        <p class="news-excerpt">
+                            Российская команда из 30 пловцов примет участие в чемпионате мира по плаванию, который пройдет в Сингапуре. 
+                            Спортсмены прошли отбор и получили допуск к международным соревнованиям...
+                        </p>
+                        <a href="https://www.sovsport.ru/swimming/news/2:1087234" class="news-link" target="_blank">
+                            Читать полностью 
+                            <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </div>
+                </article>
+
+                <article class="news-card">
+                    <div class="news-content">
+                        <h2 class="news-title">92-летняя бегунья установила мировой рекорд в марафоне</h2>
+                        <p class="news-excerpt">
+                            Харриет Томпсон из Северной Каролины завершила свой 16-й марафон в Сан-Диего, став самой пожилой женщиной, 
+                            когда-либо пробежавшей марафонскую дистанцию. Она преодолела 42.2 км за 7 часов 24 минуты...
+                        </p>
+                        <a href="https://www.npr.org/sections/thetwo-way/2015/06/01/411260984/a-92-year-old-ran-her-16th-marathon-and-broke-a-record" class="news-link" target="_blank">
+                            Читать полностью 
+                            <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </div>
+                </article>
+
+                <article class="news-card">
+                    <div class="news-content">
+                        <h2 class="news-title">Как подготовиться к своему первому марафону</h2>
+                        <p class="news-excerpt">
+                            Эксперты рекомендуют начинать подготовку за 12-16 недель до старта. Важно постепенно наращивать 
+                            дистанцию, правильно питаться и отдыхать. Подробное руководство для начинающих марафонцев...
+                        </p>
+                        <a href="https://www.abc.net.au/everyday/want-to-run-your-first-marathon-heres-how/100167838" class="news-link" target="_blank">
+                            Читать полностью 
+                            <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </div>
+                </article>
+
+                <article class="news-card">
+                    <div class="news-content">
+                        <h2 class="news-title">Исследование: как марафон меняет мозг бегуна</h2>
+                        <p class="news-excerpt">
+                            Новое исследование показало, что во время марафона мозг использует миелин - жировое вещество, 
+                            изолирующее нервные клетки - в качестве источника энергии. Это открытие может изменить наше понимание 
+                            работы мозга при длительных физических нагрузках...
+                        </p>
+                        <a href="https://www.nature.com/articles/d41586-025-00864-z" class="news-link" target="_blank">
+                            Читать полностью 
+                            <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </div>
+                </article>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>Контакты</h3>
+                <p><i class="fas fa-phone"></i> +7 (999) 123-45-67</p>
+                <p><i class="fas fa-envelope"></i> info@sportcity.ru</p>
+            </div>
+            <div class="footer-section">
+                <h3>Социальные сети</h3>
+                <div class="social-icons">
+                    <a href="#"><i class="fab fa-vk"></i></a>
+                    <a href="#"><i class="fab fa-telegram"></i></a>
+                    <a href="#"><i class="fab fa-youtube"></i></a>
+                </div>
+            </div>
+            <div class="footer-section">
+                <h3>Экстренные контакты</h3>
+                <p><i class="fas fa-ambulance"></i> Скорая помощь: 103</p>
+                <p><i class="fas fa-first-aid"></i> Медпункт: +7 (999) 999-99-99</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 SportCity. Все права защищены.</p>
+        </div>
+    </footer>
+
+    <script src="js/news.js"></script>
+</body>
+</html> 
