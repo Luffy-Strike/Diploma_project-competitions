@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Личный кабинет - SportCity</title>
+    <title>Профиль - SportCity</title>
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
@@ -13,13 +13,12 @@
         <nav>
             <div class="logo-container">
                 <a href="index.html" class="logo">
-                    <i class="fas fa-running logo-icon"></i>
+                    <i class="fas fa-trophy logo-icon"></i>
                     SportCity
                 </a>
             </div>
             <ul class="nav-links">
                 <li><a href="index.html">Главная</a></li>
-                <li><a href="my-competitions.html">Мои соревнования</a></li>
                 <li><a href="map.html">Карта</a></li>
                 <li><a href="news.html">Новости</a></li>
                 <li><a href="contacts.html">Контакты</a></li>
@@ -28,221 +27,64 @@
         </nav>
     </header>
 
-    <main>
-        <div class="profile-header card">
-            <div class="profile-avatar">
-                <img src="img/default-avatar.png" alt="Фото профиля" id="profileAvatar">
-                <button class="btn btn-secondary" onclick="document.getElementById('avatarUpload').click()">
-                    <i class="fas fa-camera"></i> Изменить фото
-                </button>
-                <input type="file" id="avatarUpload" hidden accept="image/*">
-            </div>
-            <div class="profile-info">
-                <h1>Иван Петров</h1>
-                <p class="profile-status">Опытный спортсмен</p>
-                <div class="profile-stats">
-                    <div class="stat">
-                        <span class="stat-number">15</span>
-                        <span class="stat-label">Соревнований</span>
+    <main class="page-content">
+        <div class="profile-container">
+            <div class="profile-header card">
+                <div class="profile-avatar">
+                    <div class="avatar-container">
+                        <img src="img/avatar-placeholder.jpg" alt="Аватар пользователя" id="profileAvatar">
+                        <div class="avatar-upload">
+                            <label for="avatarUpload" class="avatar-upload-label">
+                                <i class="fas fa-camera"></i>
+                                <span>Изменить фото</span>
+                            </label>
+                            <input type="file" id="avatarUpload" accept="image/*" style="display: none;">
+                        </div>
                     </div>
-                    <div class="stat">
-                        <span class="stat-number">8</span>
-                        <span class="stat-label">Медалей</span>
-                    </div>
-                    <div class="stat">
-                        <span class="stat-number">1250</span>
-                        <span class="stat-label">Очков</span>
-                    </div>
+                    <h2 id="profileName">Иван Петров</h2>
+                    <p class="profile-status">Активный участник</p>
                 </div>
-            </div>
-        </div>
-
-        <div class="profile-content">
-            <div class="tabs">
-                <button class="tab active" data-tab="achievements">Достижения</button>
-                <button class="tab" data-tab="history">История</button>
-                <button class="tab" data-tab="stats">Статистика</button>
-                <button class="tab" data-tab="documents">Документы</button>
-                <button class="tab" data-tab="settings">Настройки</button>
-            </div>
-
-            <div class="tab-content" id="achievements">
-                <div class="grid grid-3">
-                    <div class="achievement-card card">
-                        <i class="fas fa-medal achievement-icon gold"></i>
-                        <h3>Марафонец</h3>
-                        <p>Пробежал свой первый марафон</p>
-                        <span class="badge badge-primary">25.05.2025</span>
+                <div class="profile-info">
+                    <div class="profile-stats">
+                        <div class="stat">
+                            <div class="stat-number">12</div>
+                            <div class="stat-label">Соревнований</div>
+                        </div>
+                        <div class="stat">
+                            <div class="stat-number">5</div>
+                            <div class="stat-label">Медалей</div>
+                        </div>
+                        <div class="stat">
+                            <div class="stat-number">3</div>
+                            <div class="stat-label">Рекорда</div>
+                        </div>
                     </div>
-                    <div class="achievement-card card">
-                        <i class="fas fa-trophy achievement-icon silver"></i>
-                        <h3>Силач</h3>
-                        <p>Установил личный рекорд в жиме лежа</p>
-                        <span class="badge badge-primary">15.06.2025</span>
-                    </div>
-                    <div class="achievement-card card">
-                        <i class="fas fa-star achievement-icon bronze"></i>
-                        <h3>Спринтер</h3>
-                        <p>Пробежал 100м за 12 секунд</p>
-                        <span class="badge badge-primary">10.07.2025</span>
+                    <div class="profile-bio">
+                        <p>Любитель спорта и активного образа жизни. Участвую в городских соревнованиях с 2023 года.</p>
                     </div>
                 </div>
             </div>
 
-            <div class="tab-content hidden" id="history">
-                <div class="timeline">
-                    <div class="timeline-item">
-                        <div class="timeline-date">25.05.2025</div>
-                        <div class="timeline-content card">
-                            <h3>Городской марафон</h3>
-                            <p>Дистанция: 42.2 км</p>
-                            <p>Время: 3:45:22</p>
-                            <p>Место: 15 из 150</p>
-                            <span class="badge badge-success">Завершено</span>
-                        </div>
+            <div class="profile-settings card">
+                <h2><i class="fas fa-cog"></i> Настройки профиля</h2>
+                <form id="profileSettingsForm" class="settings-form">
+                    <div class="form-group">
+                        <label for="settingsName">Имя</label>
+                        <input type="text" id="settingsName" class="form-control" value="Иван Петров" required>
                     </div>
-                    <div class="timeline-item">
-                        <div class="timeline-date">15.06.2025</div>
-                        <div class="timeline-content card">
-                            <h3>Соревнования по жиму лежа</h3>
-                            <p>Вес: 100 кг</p>
-                            <p>Повторений: 8</p>
-                            <p>Место: 3 из 25</p>
-                            <span class="badge badge-success">Завершено</span>
-                        </div>
+                    <div class="form-group">
+                        <label for="settingsEmail">Email</label>
+                        <input type="email" id="settingsEmail" class="form-control" value="ivan@example.com" required>
                     </div>
-                </div>
-            </div>
-
-            <div class="tab-content hidden" id="stats">
-                <div class="grid grid-2">
-                    <div class="stats-chart card">
-                        <h3>Прогресс в беге</h3>
-                        <canvas id="runningProgress"></canvas>
+                    <div class="form-group">
+                        <label for="settingsAge">Возраст</label>
+                        <input type="number" id="settingsAge" class="form-control" value="25" min="18" max="100" required>
                     </div>
-                    <div class="stats-chart card">
-                        <h3>Силовые показатели</h3>
-                        <canvas id="strengthProgress"></canvas>
-                    </div>
-                    <div class="stats-summary card">
-                        <h3>Общая статистика</h3>
-                        <ul class="stats-list">
-                            <li>
-                                <span>Всего тренировок:</span>
-                                <strong>156</strong>
-                            </li>
-                            <li>
-                                <span>Общая дистанция:</span>
-                                <strong>1,234 км</strong>
-                            </li>
-                            <li>
-                                <span>Сожжено калорий:</span>
-                                <strong>78,900 ккал</strong>
-                            </li>
-                            <li>
-                                <span>Время тренировок:</span>
-                                <strong>256 часов</strong>
-                            </li>
-                        </ul>
-                    </div>
-                    <div class="personal-records card">
-                        <h3>Личные рекорды</h3>
-                        <ul class="records-list">
-                            <li>
-                                <i class="fas fa-running"></i>
-                                <span>5 км:</span>
-                                <strong>22:15</strong>
-                            </li>
-                            <li>
-                                <i class="fas fa-dumbbell"></i>
-                                <span>Жим лежа:</span>
-                                <strong>100 кг</strong>
-                            </li>
-                            <li>
-                                <i class="fas fa-biking"></i>
-                                <span>Велосипед 20 км:</span>
-                                <strong>45:30</strong>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-
-            <div class="tab-content hidden" id="documents">
-                <div class="documents-grid grid-2">
-                    <div class="document-upload card">
-                        <h3>Загрузка документов</h3>
-                        <div class="form-group">
-                            <label for="medicalCertificate">Медицинская справка:</label>
-                            <input type="file" id="medicalCertificate" class="form-control" accept=".pdf,.jpg,.jpeg,.png">
-                        </div>
-                        <div class="form-group">
-                            <label for="insurancePolicy">Страховой полис:</label>
-                            <input type="file" id="insurancePolicy" class="form-control" accept=".pdf,.jpg,.jpeg,.png">
-                        </div>
-                        <button class="btn btn-primary">Загрузить</button>
-                    </div>
-                    <div class="documents-list card">
-                        <h3>Мои документы</h3>
-                        <ul class="documents">
-                            <li>
-                                <i class="fas fa-file-medical"></i>
-                                <span>Медицинская справка</span>
-                                <div class="document-actions">
-                                    <button class="btn btn-secondary"><i class="fas fa-download"></i></button>
-                                    <button class="btn btn-danger"><i class="fas fa-trash"></i></button>
-                                </div>
-                            </li>
-                            <li>
-                                <i class="fas fa-file-contract"></i>
-                                <span>Страховой полис</span>
-                                <div class="document-actions">
-                                    <button class="btn btn-secondary"><i class="fas fa-download"></i></button>
-                                    <button class="btn btn-danger"><i class="fas fa-trash"></i></button>
-                                </div>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-
-            <div class="tab-content hidden" id="settings">
-                <div class="settings-form card">
-                    <h3>Настройки профиля</h3>
-                    <form id="profileSettings">
-                        <div class="form-group">
-                            <label for="fullName">ФИО:</label>
-                            <input type="text" id="fullName" class="form-control" value="Иван Петров">
-                        </div>
-                        <div class="form-group">
-                            <label for="email">Email:</label>
-                            <input type="email" id="email" class="form-control" value="ivan@example.com">
-                        </div>
-                        <div class="form-group">
-                            <label for="phone">Телефон:</label>
-                            <input type="tel" id="phone" class="form-control" value="+7 (999) 123-45-67">
-                        </div>
-                        <div class="form-group">
-                            <label for="birthDate">Дата рождения:</label>
-                            <input type="date" id="birthDate" class="form-control" value="1990-01-01">
-                        </div>
-                        <div class="form-group">
-                            <label for="notifications">Уведомления:</label>
-                            <div class="checkbox-group">
-                                <label>
-                                    <input type="checkbox" checked> Email уведомления
-                                </label>
-                                <label>
-                                    <input type="checkbox" checked> SMS уведомления
-                                </label>
-                                <label>
-                                    <input type="checkbox" checked> Push уведомления
-                                </label>
-                            </div>
-                        </div>
-                        <button type="submit" class="btn btn-primary">Сохранить изменения</button>
-                    </form>
-                </div>
+                    <button type="submit" class="btn-primary">
+                        <i class="fas fa-save"></i>
+                        Сохранить изменения
+                    </button>
+                </form>
             </div>
         </div>
     </main>
@@ -273,7 +115,6 @@
         </div>
     </footer>
 
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="js/profile.js"></script>
 </body>
 </html> 

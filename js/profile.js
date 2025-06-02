@@ -21,23 +21,26 @@ document.addEventListener('DOMContentLoaded', function() {
     const avatarUpload = document.getElementById('avatarUpload');
     const profileAvatar = document.getElementById('profileAvatar');
 
-    avatarUpload.addEventListener('change', function(e) {
-        const file = e.target.files[0];
-        if (file) {
-            const reader = new FileReader();
-            reader.onload = function(e) {
-                profileAvatar.src = e.target.result;
-                // Сохраняем в localStorage
-                localStorage.setItem('userAvatar', e.target.result);
-            };
-            reader.readAsDataURL(file);
+    if (avatarUpload && profileAvatar) {
+        // Проверяем, есть ли сохраненное изображение
+        const savedAvatar = localStorage.getItem('profileAvatar');
+        if (savedAvatar) {
+            profileAvatar.src = savedAvatar;
         }
-    });
 
-    // Восстанавливаем аватар из localStorage
-    const savedAvatar = localStorage.getItem('userAvatar');
-    if (savedAvatar) {
-        profileAvatar.src = savedAvatar;
+        // Обработчик загрузки нового изображения
+        avatarUpload.addEventListener('change', function(e) {
+            const file = e.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    profileAvatar.src = e.target.result;
+                    // Сохраняем изображение в localStorage
+                    localStorage.setItem('profileAvatar', e.target.result);
+                };
+                reader.readAsDataURL(file);
+            }
+        });
     }
 
     // Инициализация графиков
@@ -108,44 +111,67 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 
-    // Обработка формы настроек
-    const settingsForm = document.getElementById('profileSettings');
-    settingsForm.addEventListener('submit', function(e) {
-        e.preventDefault();
-        
-        const formData = {
-            fullName: document.getElementById('fullName').value,
-            email: document.getElementById('email').value,
-            phone: document.getElementById('phone').value,
-            birthDate: document.getElementById('birthDate').value,
-            notifications: Array.from(document.querySelectorAll('input[type="checkbox"]'))
-                .map(checkbox => ({
-                    type: checkbox.parentElement.textContent.trim(),
-                    enabled: checkbox.checked
-                }))
-        };
+    // Обработка формы настроек профиля
+    const profileSettingsForm = document.getElementById('profileSettingsForm');
+    const profileName = document.getElementById('profileName');
 
-        // Сохраняем настройки в localStorage
-        localStorage.setItem('userSettings', JSON.stringify(formData));
+    if (profileSettingsForm) {
+        // Загрузка сохраненных данных
+        const savedSettings = JSON.parse(localStorage.getItem('profileSettings') || '{}');
+        if (savedSettings.name) {
+            document.getElementById('settingsName').value = savedSettings.name;
+            profileName.textContent = savedSettings.name;
+        }
+        if (savedSettings.email) {
+            document.getElementById('settingsEmail').value = savedSettings.email;
+        }
+        if (savedSettings.age) {
+            document.getElementById('settingsAge').value = savedSettings.age;
+        }
 
-        // Показываем уведомление об успешном сохранении
-        showNotification('Настройки успешно сохранены');
-    });
+        profileSettingsForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Получаем значения полей
+            const name = document.getElementById('settingsName').value;
+            const email = document.getElementById('settingsEmail').value;
+            const age = document.getElementById('settingsAge').value;
 
-    // Восстанавливаем настройки из localStorage
-    const savedSettings = localStorage.getItem('userSettings');
-    if (savedSettings) {
-        const settings = JSON.parse(savedSettings);
-        document.getElementById('fullName').value = settings.fullName;
-        document.getElementById('email').value = settings.email;
-        document.getElementById('phone').value = settings.phone;
-        document.getElementById('birthDate').value = settings.birthDate;
-        
-        const checkboxes = document.querySelectorAll('input[type="checkbox"]');
-        settings.notifications.forEach((notification, index) => {
-            checkboxes[index].checked = notification.enabled;
+            // Обновляем отображаемое имя
+            profileName.textContent = name;
+
+            // Сохраняем данные в localStorage
+            const settings = { name, email, age };
+            localStorage.setItem('profileSettings', JSON.stringify(settings));
+
+            // Анимация кнопки при сохранении
+            const submitButton = this.querySelector('button[type="submit"]');
+            const originalContent = submitButton.innerHTML;
+            submitButton.innerHTML = '<i class="fas fa-check"></i> Сохранено';
+            submitButton.style.backgroundColor = 'var(--success-color)';
+            
+            setTimeout(() => {
+                submitButton.innerHTML = originalContent;
+                submitButton.style.backgroundColor = '';
+            }, 2000);
+
+            // Показываем уведомление
+            showNotification('Настройки профиля успешно сохранены');
         });
     }
+
+    // Обработка переключателей
+    const switches = document.querySelectorAll('.switch input');
+    switches.forEach(switchInput => {
+        switchInput.addEventListener('change', function() {
+            const label = this.closest('.setting-item').querySelector('span');
+            if (this.checked) {
+                label.style.opacity = '1';
+            } else {
+                label.style.opacity = '0.5';
+            }
+        });
+    });
 
     // Обработка загрузки документов
     const documentUpload = document.getElementById('medicalCertificate');
@@ -164,17 +190,21 @@ document.addEventListener('DOMContentLoaded', function() {
     // Функция для показа уведомлений
     function showNotification(message) {
         const notification = document.createElement('div');
-        notification.className = 'alert alert-success';
-        notification.style.position = 'fixed';
-        notification.style.top = '20px';
-        notification.style.right = '20px';
-        notification.style.zIndex = '1000';
-        notification.textContent = message;
+        notification.className = 'notification';
+        notification.innerHTML = `
+            <i class="fas fa-check-circle"></i>
+            <span>${message}</span>
+        `;
 
         document.body.appendChild(notification);
 
+        // Анимация появления
+        setTimeout(() => notification.classList.add('show'), 100);
+
+        // Удаление уведомления
         setTimeout(() => {
-            notification.remove();
+            notification.classList.remove('show');
+            setTimeout(() => notification.remove(), 300);
         }, 3000);
     }
 
@@ -196,5 +226,11 @@ document.addEventListener('DOMContentLoaded', function() {
                 }
             }
         });
+    });
+
+    // Анимация для статистики
+    const stats = document.querySelectorAll('.stat');
+    stats.forEach((stat, index) => {
+        stat.style.animationDelay = `${index * 0.2}s`;
     });
 }); 
