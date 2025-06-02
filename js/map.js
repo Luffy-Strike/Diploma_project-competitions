@@ -1,4 +1,3 @@
-// Данные о соревнованиях в разных городах
 const cityCompetitions = {
     moscow: [
         {
@@ -32,7 +31,6 @@ const cityCompetitions = {
     ]
 };
 
-// Координаты центров городов
 const cityCenters = {
     moscow: [55.755819, 37.617644],
     spb: [59.939095, 30.315868],
@@ -42,22 +40,18 @@ const cityCenters = {
 let map;
 let currentCity = '';
 
-// Инициализация карты
 function init() {
-    // Создание карты
     var myMap = new ymaps.Map("map", {
         center: [55.76, 37.64], // Москва
         zoom: 11,
         controls: ['zoomControl']
     });
 
-    // Определяем местоположение пользователя
     if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(function(position) {
             var coords = [position.coords.latitude, position.coords.longitude];
             myMap.setCenter(coords, 12);
             
-            // Добавляем метку текущего местоположения
             var locationPlacemark = new ymaps.Placemark(coords, {
                 hintContent: 'Вы здесь'
             }, {
@@ -65,21 +59,16 @@ function init() {
             });
             myMap.geoObjects.add(locationPlacemark);
 
-            // Показываем ближайшие события
             showNearbyEvents(coords);
         }, function(error) {
             console.error('Ошибка геолокации:', error);
-            // Показываем события в Москве по умолчанию
             showNearbyEvents([55.76, 37.64]);
         });
     } else {
-        // Показываем события в Москве по умолчанию
         showNearbyEvents([55.76, 37.64]);
     }
 
     function showNearbyEvents(coords) {
-        // Здесь должен быть запрос к API для получения событий
-        // Пример данных:
         var events = [
             {
                 title: 'Городской марафон',
@@ -104,7 +93,6 @@ function init() {
             }
         ];
 
-        // Добавляем метки на карту
         events.forEach(function(event) {
             var placemark = new ymaps.Placemark(event.coordinates, {
                 hintContent: event.title,
@@ -120,7 +108,6 @@ function init() {
             myMap.geoObjects.add(placemark);
         });
 
-        // Обновляем список событий
         updateEventsList(events);
     }
 
@@ -143,7 +130,6 @@ function init() {
     }
 }
 
-// Получение местоположения пользователя
 function getUserLocation() {
     if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(
@@ -154,14 +140,12 @@ function getUserLocation() {
             },
             (error) => {
                 console.error('Ошибка получения геолокации:', error);
-                // По умолчанию показываем Москву
                 showCompetitions('moscow');
             }
         );
     }
 }
 
-// Показ местоположения пользователя
 function showUserLocation(coords) {
     const placemark = new ymaps.Placemark(coords, {
         hintContent: 'Вы здесь'
@@ -171,7 +155,6 @@ function showUserLocation(coords) {
     map.geoObjects.add(placemark);
 }
 
-// Определение ближайшего города
 function findNearestCity(userCoords) {
     let minDistance = Infinity;
     let nearestCity = 'moscow';
@@ -188,14 +171,12 @@ function findNearestCity(userCoords) {
     showCompetitions(nearestCity);
 }
 
-// Расчет расстояния между точками (упрощенный вариант)
 function getDistance(coords1, coords2) {
     const [lat1, lon1] = coords1;
     const [lat2, lon2] = coords2;
     return Math.sqrt(Math.pow(lat2 - lat1, 2) + Math.pow(lon2 - lon1, 2));
 }
 
-// Показ соревнований на карте
 function showCompetitions(city) {
     map.geoObjects.removeAll();
     
@@ -204,7 +185,6 @@ function showCompetitions(city) {
     container.innerHTML = '<h2>Ближайшие соревнования</h2>';
 
     competitions.forEach(comp => {
-        // Добавляем метку на карту
         const placemark = new ymaps.Placemark(comp.coordinates, {
             hintContent: comp.title,
             balloonContent: `
@@ -216,8 +196,6 @@ function showCompetitions(city) {
             preset: 'islands#blueSpotIcon'
         });
         map.geoObjects.add(placemark);
-
-        // Добавляем информацию в список
         const competitionElement = document.createElement('div');
         competitionElement.className = 'competition-item';
         competitionElement.innerHTML = `
@@ -229,11 +207,9 @@ function showCompetitions(city) {
     });
 }
 
-// Форматирование даты
 function formatDate(dateString) {
     const options = { year: 'numeric', month: 'long', day: 'numeric' };
     return new Date(dateString).toLocaleDateString('ru-RU', options);
 }
 
-// Инициализация карты при загрузке API
 ymaps.ready(init); 

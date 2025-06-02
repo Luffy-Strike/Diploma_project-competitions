@@ -1,5 +1,4 @@
 document.addEventListener('DOMContentLoaded', function() {
-    // Инициализация табов
     const tabs = document.querySelectorAll('.tab');
     const tabContents = document.querySelectorAll('.tab-content');
 
@@ -7,35 +6,29 @@ document.addEventListener('DOMContentLoaded', function() {
         tab.addEventListener('click', () => {
             const tabId = tab.getAttribute('data-tab');
             
-            // Удаляем активный класс у всех табов и контента
             tabs.forEach(t => t.classList.remove('active'));
             tabContents.forEach(content => content.classList.add('hidden'));
             
-            // Добавляем активный класс выбранному табу и показываем его контент
             tab.classList.add('active');
             document.getElementById(tabId).classList.remove('hidden');
         });
     });
 
-    // Загрузка аватара
     const avatarUpload = document.getElementById('avatarUpload');
     const profileAvatar = document.getElementById('profileAvatar');
 
     if (avatarUpload && profileAvatar) {
-        // Проверяем, есть ли сохраненное изображение
         const savedAvatar = localStorage.getItem('profileAvatar');
         if (savedAvatar) {
             profileAvatar.src = savedAvatar;
         }
 
-        // Обработчик загрузки нового изображения
         avatarUpload.addEventListener('change', function(e) {
             const file = e.target.files[0];
             if (file) {
                 const reader = new FileReader();
                 reader.onload = function(e) {
                     profileAvatar.src = e.target.result;
-                    // Сохраняем изображение в localStorage
                     localStorage.setItem('profileAvatar', e.target.result);
                 };
                 reader.readAsDataURL(file);
@@ -43,7 +36,6 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    // Инициализация графиков
     const runningCtx = document.getElementById('runningProgress').getContext('2d');
     const strengthCtx = document.getElementById('strengthProgress').getContext('2d');
 
@@ -111,12 +103,10 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 
-    // Обработка формы настроек профиля
     const profileSettingsForm = document.getElementById('profileSettingsForm');
     const profileName = document.getElementById('profileName');
 
     if (profileSettingsForm) {
-        // Загрузка сохраненных данных
         const savedSettings = JSON.parse(localStorage.getItem('profileSettings') || '{}');
         if (savedSettings.name) {
             document.getElementById('settingsName').value = savedSettings.name;
@@ -132,19 +122,15 @@ document.addEventListener('DOMContentLoaded', function() {
         profileSettingsForm.addEventListener('submit', function(e) {
             e.preventDefault();
             
-            // Получаем значения полей
             const name = document.getElementById('settingsName').value;
             const email = document.getElementById('settingsEmail').value;
             const age = document.getElementById('settingsAge').value;
 
-            // Обновляем отображаемое имя
             profileName.textContent = name;
 
-            // Сохраняем данные в localStorage
             const settings = { name, email, age };
             localStorage.setItem('profileSettings', JSON.stringify(settings));
 
-            // Анимация кнопки при сохранении
             const submitButton = this.querySelector('button[type="submit"]');
             const originalContent = submitButton.innerHTML;
             submitButton.innerHTML = '<i class="fas fa-check"></i> Сохранено';
@@ -155,12 +141,10 @@ document.addEventListener('DOMContentLoaded', function() {
                 submitButton.style.backgroundColor = '';
             }, 2000);
 
-            // Показываем уведомление
             showNotification('Настройки профиля успешно сохранены');
         });
     }
 
-    // Обработка переключателей
     const switches = document.querySelectorAll('.switch input');
     switches.forEach(switchInput => {
         switchInput.addEventListener('change', function() {
@@ -173,7 +157,6 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 
-    // Обработка загрузки документов
     const documentUpload = document.getElementById('medicalCertificate');
     const insuranceUpload = document.getElementById('insurancePolicy');
 
@@ -181,13 +164,11 @@ document.addEventListener('DOMContentLoaded', function() {
         upload.addEventListener('change', function(e) {
             const file = e.target.files[0];
             if (file) {
-                // Здесь будет логика загрузки файла на сервер
                 showNotification(`Файл ${file.name} успешно загружен`);
             }
         });
     });
 
-    // Функция для показа уведомлений
     function showNotification(message) {
         const notification = document.createElement('div');
         notification.className = 'notification';
@@ -198,17 +179,14 @@ document.addEventListener('DOMContentLoaded', function() {
 
         document.body.appendChild(notification);
 
-        // Анимация появления
         setTimeout(() => notification.classList.add('show'), 100);
 
-        // Удаление уведомления
         setTimeout(() => {
             notification.classList.remove('show');
             setTimeout(() => notification.remove(), 300);
         }, 3000);
     }
 
-    // Обработка действий с документами
     const documentActions = document.querySelectorAll('.document-actions button');
     documentActions.forEach(button => {
         button.addEventListener('click', function() {
@@ -216,10 +194,8 @@ document.addEventListener('DOMContentLoaded', function() {
             const documentName = button.closest('li').querySelector('span').textContent;
 
             if (action === 'download') {
-                // Здесь будет логика скачивания документа
                 showNotification(`Скачивание ${documentName}`);
             } else {
-                // Здесь будет логика удаления документа
                 if (confirm(`Вы уверены, что хотите удалить ${documentName}?`)) {
                     button.closest('li').remove();
                     showNotification(`${documentName} удален`);
@@ -228,7 +204,6 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 
-    // Анимация для статистики
     const stats = document.querySelectorAll('.stat');
     stats.forEach((stat, index) => {
         stat.style.animationDelay = `${index * 0.2}s`;

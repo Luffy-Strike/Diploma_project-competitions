@@ -1,4 +1,3 @@
-// Данные новостей
 const newsData = [
     {
         id: 1,
@@ -54,44 +53,36 @@ let currentCategory = 'all';
 let currentPage = 1;
 const newsPerPage = 6;
 
-// Инициализация страницы
 document.addEventListener('DOMContentLoaded', () => {
-    // Обработчик фильтра категорий
     document.getElementById('categoryFilter').addEventListener('change', (e) => {
         currentCategory = e.target.value;
         currentPage = 1;
         displayNews();
     });
 
-    // Обработчик кнопки "Загрузить еще"
     document.getElementById('loadMoreBtn').addEventListener('click', () => {
         currentPage++;
         displayNews(true);
     });
 
-    // Первоначальное отображение новостей
     displayNews();
 });
 
-// Функция отображения новостей
 function displayNews(append = false) {
     const container = document.getElementById('newsContainer');
     if (!append) {
         container.innerHTML = '';
     }
 
-    // Фильтрация новостей по категории
     let filteredNews = newsData;
     if (currentCategory !== 'all') {
         filteredNews = newsData.filter(news => news.category === currentCategory);
     }
 
-    // Пагинация
     const start = (currentPage - 1) * newsPerPage;
     const end = start + newsPerPage;
     const paginatedNews = filteredNews.slice(start, end);
 
-    // Отображение новостей
     paginatedNews.forEach(news => {
         const newsCard = document.createElement('article');
         newsCard.className = 'news-card';
@@ -107,7 +98,6 @@ function displayNews(append = false) {
             </div>
         `;
 
-        // Добавляем анимацию появления
         newsCard.style.opacity = '0';
         newsCard.style.transform = 'translateY(20px)';
         container.appendChild(newsCard);
@@ -119,7 +109,6 @@ function displayNews(append = false) {
         }, 100 * paginatedNews.indexOf(news));
     });
 
-    // Управление кнопкой "Загрузить еще"
     const loadMoreBtn = document.getElementById('loadMoreBtn');
     if (end >= filteredNews.length) {
         loadMoreBtn.style.display = 'none';
@@ -128,13 +117,11 @@ function displayNews(append = false) {
     }
 }
 
-// Функция форматирования даты
 function formatDate(dateString) {
     const options = { year: 'numeric', month: 'long', day: 'numeric' };
     return new Date(dateString).toLocaleDateString('ru-RU', options);
 }
 
-// Функция получения названия категории
 function getCategoryName(category) {
     const categories = {
         running: 'Бег',
@@ -144,7 +131,6 @@ function getCategoryName(category) {
     return categories[category] || category;
 }
 
-// Добавляем стили анимации
 const style = document.createElement('style');
 style.textContent = `
     .news-card {

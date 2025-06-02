@@ -1,4 +1,3 @@
-// Пример данных о зарегистрированных соревнованиях пользователя
 const myCompetitions = [
     {
         id: 1,
@@ -16,12 +15,10 @@ const myCompetitions = [
     }
 ];
 
-// Функция для отображения списка соревнований пользователя
 function displayMyCompetitions() {
     const container = document.getElementById('myCompetitionsList');
     if (!container) return;
 
-    // Получаем сохраненные соревнования из localStorage
     const myCompetitions = JSON.parse(localStorage.getItem('myCompetitions') || '[]');
 
     if (myCompetitions.length === 0) {
@@ -35,10 +32,8 @@ function displayMyCompetitions() {
         return;
     }
 
-    // Сортируем соревнования по дате регистрации (новые сверху)
     myCompetitions.sort((a, b) => new Date(b.registrationDate) - new Date(a.registrationDate));
 
-    // Отображаем каждое соревнование
     myCompetitions.forEach(competition => {
         const registrationDate = new Date(competition.registrationDate);
         const card = document.createElement('div');
@@ -61,13 +56,11 @@ function displayMyCompetitions() {
     });
 }
 
-// Форматирование даты
 function formatDate(dateString) {
     const options = { year: 'numeric', month: 'long', day: 'numeric' };
     return new Date(dateString).toLocaleDateString('ru-RU', options);
 }
 
-// Функция отмены регистрации
 function cancelRegistration(registrationDate) {
     if (confirm('Вы уверены, что хотите отменить регистрацию на это соревнование?')) {
         let myCompetitions = JSON.parse(localStorage.getItem('myCompetitions') || '[]');
@@ -77,7 +70,6 @@ function cancelRegistration(registrationDate) {
     }
 }
 
-// Функция показа уведомления
 function showNotification(message) {
     const notification = document.createElement('div');
     notification.className = 'notification';
@@ -106,7 +98,6 @@ function showNotification(message) {
     }, 3000);
 }
 
-// Добавляем стили анимации
 const style = document.createElement('style');
 style.textContent = `
     @keyframes slideIn {
@@ -160,7 +151,6 @@ style.textContent = `
 `;
 document.head.appendChild(style);
 
-// Функция для получения эмодзи события
 function getEventEmoji(eventId) {
     const emojis = {
         'marathon': '🏃‍♂️',
@@ -173,7 +163,6 @@ function getEventEmoji(eventId) {
     return emojis[eventId] || '🏅';
 }
 
-// Инициализация страницы
 document.addEventListener('DOMContentLoaded', () => {
     displayMyCompetitions();
 }); 

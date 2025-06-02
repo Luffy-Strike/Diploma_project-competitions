@@ -1,4 +1,3 @@
-// Обработка отправки формы
 document.getElementById('contactForm')?.addEventListener('submit', function(e) {
     e.preventDefault();
     
@@ -9,27 +8,20 @@ document.getElementById('contactForm')?.addEventListener('submit', function(e) {
         message: document.getElementById('message').value
     };
 
-    // В реальном приложении здесь был бы запрос к серверу
     console.log('Отправка сообщения:', formData);
     
-    // Показываем уведомление об успешной отправке
     showNotification('Сообщение успешно отправлено! Мы свяжемся с вами в ближайшее время.');
     
-    // Очищаем форму
     this.reset();
 });
 
-// Функция показа уведомления
 function showNotification(message) {
-    // Создаем элемент уведомления
     const notification = document.createElement('div');
     notification.className = 'notification';
     notification.textContent = message;
 
-    // Добавляем уведомление на страницу
     document.body.appendChild(notification);
 
-    // Добавляем стили для анимации
     notification.style.cssText = `
         position: fixed;
         top: 20px;
@@ -43,7 +35,6 @@ function showNotification(message) {
         animation: slideIn 0.5s ease-out;
     `;
 
-    // Удаляем уведомление через 3 секунды
     setTimeout(() => {
         notification.style.animation = 'slideOut 0.5s ease-out';
         setTimeout(() => {
@@ -52,7 +43,6 @@ function showNotification(message) {
     }, 3000);
 }
 
-// Добавляем стили анимации
 const style = document.createElement('style');
 style.textContent = `
     @keyframes slideIn {

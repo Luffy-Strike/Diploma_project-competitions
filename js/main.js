@@ -1,4 +1,3 @@
-// Пример данных о соревнованиях
 const competitions = [
     {
         id: 1,
@@ -83,18 +82,15 @@ const competitions = [
     }
 ];
 
-// Функция для отображения списка соревнований
 function displayCompetitions() {
     const container = document.getElementById('competitionsList');
     const select = document.getElementById('competitionSelect');
     if (!container || !select) return;
 
-    // Очищаем контейнер и select
     container.innerHTML = '';
     select.innerHTML = '<option value="">-- Выберите соревнование --</option>';
 
     competitions.forEach(competition => {
-        // Добавляем карточку соревнования
         const competitionCard = document.createElement('div');
         competitionCard.className = 'competition-card';
         competitionCard.innerHTML = `
@@ -109,7 +105,6 @@ function displayCompetitions() {
         `;
         container.appendChild(competitionCard);
 
-        // Добавляем анимацию появления
         competitionCard.style.opacity = '0';
         competitionCard.style.transform = 'translateY(20px)';
         setTimeout(() => {
@@ -118,7 +113,6 @@ function displayCompetitions() {
             competitionCard.style.transform = 'translateY(0)';
         }, 100 * competitions.indexOf(competition));
 
-        // Добавляем опцию в select
         const option = document.createElement('option');
         option.value = competition.id;
         option.textContent = `${competition.emoji} ${competition.title} (${formatDate(competition.date)})`;
@@ -126,18 +120,15 @@ function displayCompetitions() {
     });
 }
 
-// Форматирование даты
 function formatDate(dateString) {
     const options = { year: 'numeric', month: 'long', day: 'numeric' };
     return new Date(dateString).toLocaleDateString('ru-RU', options);
 }
 
-// Обработка выбора соревнования
 function selectCompetition(competitionId) {
     const competition = competitions.find(c => c.id === competitionId);
     if (competition) {
         document.getElementById('competitionSelect').value = competitionId;
-        // Плавная прокрутка к форме регистрации
         document.querySelector('.registration-form').scrollIntoView({ 
             behavior: 'smooth',
             block: 'start'
@@ -145,9 +136,7 @@ function selectCompetition(competitionId) {
     }
 }
 
-// Обработка отправки формы регистрации
 document.addEventListener('DOMContentLoaded', function() {
-    // Обработка клика по кнопкам "Участвовать" в карточках событий
     const eventButtons = document.querySelectorAll('.btn-select[data-event]');
     eventButtons.forEach(button => {
         button.addEventListener('click', function() {
@@ -157,13 +146,11 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 
-    // Обработка отправки формы регистрации
     const registrationForm = document.getElementById('registrationForm');
     if (registrationForm) {
         registrationForm.addEventListener('submit', function(e) {
             e.preventDefault();
 
-            // Получаем данные формы
             const formData = {
                 eventId: document.getElementById('competitionSelect').value,
                 eventName: document.getElementById('competitionSelect').options[document.getElementById('competitionSelect').selectedIndex].text,
@@ -175,19 +162,15 @@ document.addEventListener('DOMContentLoaded', function() {
                 registrationDate: new Date().toISOString()
             };
 
-            // Сохраняем данные в localStorage
             let myCompetitions = JSON.parse(localStorage.getItem('myCompetitions') || '[]');
             myCompetitions.push(formData);
             localStorage.setItem('myCompetitions', JSON.stringify(myCompetitions));
 
-            // Показываем сообщение об успешной регистрации
             const successMessage = document.querySelector('.registration-success');
             successMessage.classList.add('show');
 
-            // Очищаем форму
             registrationForm.reset();
 
-            // Скрываем сообщение через 5 секунд
             setTimeout(() => {
                 successMessage.classList.remove('show');
             }, 5000);
@@ -195,7 +178,6 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 });
 
-// Функция показа уведомления
 function showNotification(message) {
     const notification = document.createElement('div');
     notification.className = 'notification';
@@ -203,7 +185,6 @@ function showNotification(message) {
 
     document.body.appendChild(notification);
 
-    // Добавляем стили для анимации
     notification.style.cssText = `
         position: fixed;
         top: 20px;
@@ -225,7 +206,6 @@ function showNotification(message) {
     }, 3000);
 }
 
-// Добавляем стили анимации
 const style = document.createElement('style');
 style.textContent = `
     @keyframes slideIn {
@@ -272,7 +252,6 @@ style.textContent = `
 `;
 document.head.appendChild(style);
 
-// Инициализация страницы
 document.addEventListener('DOMContentLoaded', () => {
     displayCompetitions();
 }); 
